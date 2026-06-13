@@ -1,0 +1,2090 @@
+{
+  "10x20": [
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1071960685,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-1071960685.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1454169984,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-1454169984.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1455990340,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-1455990340.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1594877692,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-1594877692.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1597989388,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-1597989388.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1637010294,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-1637010294.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1772507187,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-1772507187.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1980701874,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-1980701874.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2059891933,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-2059891933.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2110118152,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-2110118152.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2271424045,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-2271424045.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2384057668,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-2384057668.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2930927484,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-2930927484.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3030656239,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-3030656239.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 30346638,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-30346638.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3094903337,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-3094903337.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3311938559,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-3311938559.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3449089793,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-3449089793.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3565667759,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-3565667759.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3602228455,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-3602228455.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3831024753,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-3831024753.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3944976477,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-3944976477.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4014437695,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-4014437695.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 408547372,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-408547372.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4171270104,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-4171270104.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 465523452,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-465523452.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 804790500,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-804790500.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 910992988,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-910992988.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 928967166,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-928967166.json"
+    },
+    {
+      "rows": 10,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 946603111,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/10x20-2-12-946603111.json"
+    }
+  ],
+  "20x30": [
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1071960685,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-1071960685.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1454169984,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-1454169984.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1455990340,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-1455990340.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1594877692,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-1594877692.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1597989388,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-1597989388.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1637010294,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-1637010294.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1772507187,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-1772507187.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1980701874,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-1980701874.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2059891933,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-2059891933.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2110118152,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-2110118152.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2271424045,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-2271424045.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2384057668,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-2384057668.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2930927484,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-2930927484.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3030656239,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-3030656239.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 30346638,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-30346638.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3094903337,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-3094903337.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3311938559,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-3311938559.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3449089793,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-3449089793.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3565667759,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-3565667759.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3602228455,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-3602228455.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3831024753,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-3831024753.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3944976477,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-3944976477.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4014437695,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-4014437695.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 408547372,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-408547372.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4171270104,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-4171270104.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 465523452,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-465523452.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 804790500,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-804790500.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 910992988,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-910992988.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 928967166,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-928967166.json"
+    },
+    {
+      "rows": 20,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 946603111,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/20x30-2-12-946603111.json"
+    }
+  ],
+  "25x50": [
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1487251813,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-1487251813.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2133083895,
+      "joinedArrows": false,
+      "fullyPacked": false,
+      "location": "/levels/25x50-2-12-2133083895-part.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2590392739,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-2590392739.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4040353284,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-4040353284.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4099315094,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-4099315094.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 517225607,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-517225607.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 604988688,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-604988688.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 664939683,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-664939683.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 912801286,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-912801286.json"
+    },
+    {
+      "rows": 25,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 95201006,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/25x50-2-12-95201006.json"
+    }
+  ],
+  "30x10": [
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1002628240,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1002628240.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1010515959,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1010515959.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1424080099,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1424080099.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1523666972,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1523666972.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1543293639,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1543293639.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1665020525,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1665020525.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1681646752,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1681646752.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1751511942,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1751511942.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1856998816,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1856998816.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1874626738,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1874626738.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1897778200,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-1897778200.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2009077827,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-2009077827.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2193921246,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-2193921246.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2414124253,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-2414124253.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2663506369,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-2663506369.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2730132653,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-2730132653.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2779377143,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-2779377143.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2810589805,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-2810589805.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2877190342,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-2877190342.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3164881074,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-3164881074.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 337681209,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-337681209.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3717475619,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-3717475619.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3802931579,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-3802931579.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3814422758,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-3814422758.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3931956002,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-3931956002.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4063094184,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-4063094184.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4106037289,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-4106037289.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4206943235,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-4206943235.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4282442374,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-4282442374.json"
+    },
+    {
+      "rows": 30,
+      "cols": 10,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 874639531,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x10-2-12-874639531.json"
+    }
+  ],
+  "30x40": [
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1071960685,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-1071960685.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1454169984,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-1454169984.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1455990340,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-1455990340.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1594877692,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-1594877692.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1597989388,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-1597989388.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1637010294,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-1637010294.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1772507187,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-1772507187.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1980701874,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-1980701874.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2059891933,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-2059891933.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2110118152,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-2110118152.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2271424045,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-2271424045.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2384057668,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-2384057668.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2930927484,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-2930927484.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3030656239,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-3030656239.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 30346638,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-30346638.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3094903337,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-3094903337.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3311938559,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-3311938559.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3449089793,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-3449089793.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3565667759,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-3565667759.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3602228455,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-3602228455.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3831024753,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-3831024753.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3944976477,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-3944976477.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4014437695,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-4014437695.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 408547372,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-408547372.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4171270104,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-4171270104.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 465523452,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-465523452.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 804790500,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-804790500.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 910992988,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-910992988.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 928967166,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-928967166.json"
+    },
+    {
+      "rows": 30,
+      "cols": 40,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 946603111,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/30x40-2-12-946603111.json"
+    }
+  ],
+  "40x50": [
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1071960685,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-1071960685.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1454169984,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-1454169984.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1455990340,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-1455990340.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1594877692,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-1594877692.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1597989388,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-1597989388.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1637010294,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-1637010294.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1772507187,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-1772507187.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1980701874,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-1980701874.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2059891933,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-2059891933.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2110118152,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-2110118152.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2271424045,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-2271424045.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2384057668,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-2384057668.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2930927484,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-2930927484.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3030656239,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-3030656239.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 30346638,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-30346638.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3094903337,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-3094903337.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3311938559,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-3311938559.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3449089793,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-3449089793.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3565667759,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-3565667759.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3602228455,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-3602228455.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3831024753,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-3831024753.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3944976477,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-3944976477.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4014437695,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-4014437695.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 408547372,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-408547372.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4171270104,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-4171270104.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 465523452,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-465523452.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 804790500,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-804790500.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 910992988,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-910992988.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 928967166,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-928967166.json"
+    },
+    {
+      "rows": 40,
+      "cols": 50,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 946603111,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/40x50-2-12-946603111.json"
+    }
+  ],
+  "50x100": [
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2102078172,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/50x100-2-12-2102078172.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2119650141,
+      "joinedArrows": false,
+      "fullyPacked": false,
+      "location": "/levels/50x100-2-12-2119650141-part.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2262144285,
+      "joinedArrows": false,
+      "fullyPacked": false,
+      "location": "/levels/50x100-2-12-2262144285-part.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2380282997,
+      "joinedArrows": false,
+      "fullyPacked": false,
+      "location": "/levels/50x100-2-12-2380282997-part.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2553129903,
+      "joinedArrows": false,
+      "fullyPacked": false,
+      "location": "/levels/50x100-2-12-2553129903-part.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2641925755,
+      "joinedArrows": false,
+      "fullyPacked": false,
+      "location": "/levels/50x100-2-12-2641925755-part.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3194185165,
+      "joinedArrows": false,
+      "fullyPacked": false,
+      "location": "/levels/50x100-2-12-3194185165-part.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3272112604,
+      "joinedArrows": false,
+      "fullyPacked": false,
+      "location": "/levels/50x100-2-12-3272112604-part.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3707197224,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/50x100-2-12-3707197224.json"
+    },
+    {
+      "rows": 50,
+      "cols": 100,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3835442340,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/50x100-2-12-3835442340.json"
+    }
+  ],
+  "60x20": [
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1002628240,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1002628240.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1010515959,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1010515959.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1424080099,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1424080099.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1523666972,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1523666972.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1543293639,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1543293639.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1665020525,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1665020525.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1681646752,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1681646752.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1751511942,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1751511942.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1856998816,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1856998816.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1874626738,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1874626738.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1897778200,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-1897778200.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2009077827,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-2009077827.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2193921246,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-2193921246.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2414124253,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-2414124253.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2663506369,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-2663506369.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2730132653,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-2730132653.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2779377143,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-2779377143.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2810589805,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-2810589805.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2877190342,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-2877190342.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3164881074,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-3164881074.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 337681209,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-337681209.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3717475619,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-3717475619.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3802931579,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-3802931579.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3814422758,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-3814422758.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3931956002,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-3931956002.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4063094184,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-4063094184.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4106037289,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-4106037289.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4206943235,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-4206943235.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4282442374,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-4282442374.json"
+    },
+    {
+      "rows": 60,
+      "cols": 20,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 874639531,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/60x20-2-12-874639531.json"
+    }
+  ],
+  "90x30": [
+    {
+      "rows": 90,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 1897778200,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/90x30-2-12-1897778200.json"
+    },
+    {
+      "rows": 90,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2663506369,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/90x30-2-12-2663506369.json"
+    },
+    {
+      "rows": 90,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 2730132653,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/90x30-2-12-2730132653.json"
+    },
+    {
+      "rows": 90,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3802931579,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/90x30-2-12-3802931579.json"
+    },
+    {
+      "rows": 90,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 3931956002,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/90x30-2-12-3931956002.json"
+    },
+    {
+      "rows": 90,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 4206943235,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/90x30-2-12-4206943235.json"
+    },
+    {
+      "rows": 90,
+      "cols": 30,
+      "minArrowLen": 2,
+      "maxArrowLen": 12,
+      "seed": 874639531,
+      "joinedArrows": true,
+      "fullyPacked": true,
+      "location": "/levels/90x30-2-12-874639531.json"
+    }
+  ]
+}
