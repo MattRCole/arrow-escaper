@@ -35,7 +35,7 @@ const omit = (obj, ...keysToOmit) => {
 /** @type {(path?: string, outPath?: string) => Promise<void>} */
 const main = async (path, outPath, webPath) => {
   const loadPath = path ?? './public/levels/'
-  const writePath = outPath ?? loadPath
+  const writePath = outPath ?? './src'
   const insertPath = webPath ?? removePrefix(loadPath, './public')
 
   const dirContents = await readdir(loadPath)
@@ -45,7 +45,7 @@ const main = async (path, outPath, webPath) => {
     const cleanName = removePrefix(levelName, '/', './')
 
     const importPath = `${removeSuffix(loadPath, '/')}/${cleanName}`
-    const level = omit((await import(importPath, { with: { type: "json" } })).default, 'arrows')
+    const level = omit((await import(importPath, { with: { type: "json" } })).default, 'arrows', 'solution', 'dependencies', 'bounds')
     const key = `${level.rows}x${level.cols}`
     const prev = acc[key] ?? []
     return { ...acc, [key]: [...prev, { ...level, location: `${removeSuffix(insertPath, '/')}/${cleanName}` }] }
