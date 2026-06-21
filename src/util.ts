@@ -31,3 +31,18 @@ export function* range(args: number | { start?: number, stop: number, step?: num
     yield i
   }
 }
+
+
+export const getDebounced = () => {
+  let debounceTimeout: undefined | ReturnType<typeof setTimeout> = undefined
+  function debounced<T extends (...args: any[]) => any>(debounceTimeoutMS: number, fn: T, ...args: Parameters<T>) {
+    if (debounceTimeout !== undefined) return
+
+    debounceTimeout = setTimeout(() => {
+      fn(...args)
+      debounceTimeout = undefined
+    }, debounceTimeoutMS)
+  }
+  return debounced
+}
+

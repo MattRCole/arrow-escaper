@@ -12,11 +12,11 @@
 //
 //
 import './index.css'
-import { animateArrowLeaving, getEmptySpaces } from './level'
+import { animateArrowLeaving, getEmptySpaces, drawArrowHeadPointingInDirection, drawStraitghtLine } from './level'
 import levelManifest from './level-manifest.json'
 import type { Level, LevelManifest, PointPair } from './types'
-import { enumerate, getGridInfo } from './util'
-import type { GridInfo } from './util'
+import { type GridInfo, getGridInfo, enumerate, getDebounced } from './util'
+import { fixCanvasDims } from './game'
 import { GridDefaults } from './constants.ts'
 import {
   type DirectionT,
@@ -24,15 +24,11 @@ import {
   Direction,
   OppDirection,
   getGridToWorldFn,
+  add,
 } from './geometry'
 
 
 
-const fixCanvasDims = (canvas: HTMLCanvasElement) => {
-  const { width, height } = canvas.getBoundingClientRect()
-  if (canvas.width !== width) canvas.width = width
-  if (canvas.height !== height) canvas.height = height
-}
 
 const initGameBoard = () => {
   const gameBoard = document.getElementById('game-board')! as HTMLCanvasElement
@@ -48,45 +44,6 @@ const initGameBoard = () => {
 
 
 
-const add = ([x1, y1]: PointPair, [x2, y2]: PointPair): PointPair => [x1 + x2, y1 + y2]
-const sub = ([x1, y1]: PointPair, [x2, y2]: PointPair): PointPair => [x1 - x2, y1 - y2]
-
-const drawArrowHeadPointingInDirection = (args: {
-  ctx: CanvasRenderingContext2D,
-  gridInfo: GridInfo,
-  direction: DirectionT,
-  x: number,
-  y: number,
-}) => {
-  const {
-    ctx,
-    gridInfo,
-    direction,
-    x,
-    y,
-  } = args
-  const gridToWorld = getGridToWorldFn(gridInfo)
-
-  const onDirectionOffset = 1.0 / 4.0
-  const offDirectionOffset = 1.0 / 3.0
-  const headBuffer = 0.3
-
-  const arrowHeadDeltas: { [P in DirectionT]: [PointPair, PointPair, PointPair] } = {
-    [Direction.North]: [[offDirectionOffset, 1.0 - onDirectionOffset], [0.5, headBuffer], [1.0 - offDirectionOffset, 1.0 - onDirectionOffset]],
-    [Direction.East]: [[onDirectionOffset, offDirectionOffset], [1 - headBuffer, 0.5], [onDirectionOffset, 1.0 - offDirectionOffset]],
-    [Direction.South]: [[offDirectionOffset, onDirectionOffset], [0.5, 1.0 - headBuffer], [1.0 - offDirectionOffset, onDirectionOffset]],
-    [Direction.West]: [[1.0 - onDirectionOffset, offDirectionOffset], [headBuffer, 0.5], [1.0 - onDirectionOffset, 1.0 - offDirectionOffset]],
-  }
-
-  const [pt1, pt2, pt3] = arrowHeadDeltas[direction]
-  // We're assuming the ctx has been prepped for this
-  ctx.beginPath()
-  ctx.moveTo(...gridToWorld(...add([x, y], pt1)))
-  ctx.lineTo(...gridToWorld(...add([x, y], pt2)))
-  ctx.lineTo(...gridToWorld(...add([x, y], pt3)))
-  ctx.closePath()
-  ctx.fill()
-}
 
 
 // Note: I'm not making this type make any sense, north|north is valid, so is north|south, fuck off intrusive thoughts.
@@ -138,62 +95,6 @@ const drawArcInDirection = (args: {
   ctx.arcTo(...wMidPoint, ...wLineEnd, radius)
   ctx.lineTo(...wLineEnd)
 }
-
-const _startingOffsets = {
-  [Direction.North]: [0.5, 1.0],
-  [Direction.East]: [0.0, 0.5],
-  [Direction.South]: [0.5, 0.0],
-  [Direction.West]: [1.0, 0.5],
-} as const
-
-
-// REMEMBER: lines _start_ at the tail and _end_ at the head
-const LineOffsets = {
-  start: _startingOffsets,
-  // This actually just works for tails and heads
-  term: {
-    [Direction.North]: [0.5, 0.6],
-    [Direction.East]: [0.4, 0.5],
-    [Direction.South]: [0.5, 0.4],
-    [Direction.West]: [0.6, 0.5],
-  },
-  end: {
-    [Direction.North]: _startingOffsets[Direction.South],
-    [Direction.East]: _startingOffsets[Direction.West],
-    [Direction.South]: _startingOffsets[Direction.North],
-    [Direction.West]: _startingOffsets[Direction.East],
-  },
-} as const
-
-const drawStraitghtLine = (args: {
-  ctx: CanvasRenderingContext2D,
-  gridInfo: GridInfo,
-  startingPoint: PointPair,
-  endingPoint: PointPair,
-  direction: DirectionT,
-  startIsTail?: boolean,
-  endIsHead?: boolean
-}) => {
-  const {
-    ctx,
-    gridInfo,
-    startingPoint,
-    endingPoint,
-    direction,
-    startIsTail = false,
-    endIsHead = false,
-  } = args
-  const gridToWorld = getGridToWorldFn(gridInfo)
-  const startOffset = startIsTail ? LineOffsets.term[direction] : LineOffsets.start[direction]
-  const endOffset = endIsHead ? LineOffsets.term[direction] : LineOffsets.end[direction]
-  const [worldStart, worldEnd] = [
-    gridToWorld(...add(startOffset, startingPoint)),
-    gridToWorld(...add(endOffset, endingPoint)),
-  ]
-  ctx.moveTo(...worldStart)
-  ctx.lineTo(...worldEnd)
-}
-
 
 const renderEmpty = (args: { level: Level, gameBoard: HTMLCanvasElement, arrowsToExclude?: Set<number> }) => {
   const {
@@ -310,16 +211,6 @@ const renderArrows = (args: { level: Level, gameBoard: HTMLCanvasElement, arrows
   }
 }
 
-let debounceTimeout: undefined | ReturnType<typeof setTimeout> = undefined
-function debounced<T extends (...args: any[]) => any>(debounceTimeoutMS: number, fn: T, ...args: Parameters<T>) {
-  if (debounceTimeout !== undefined) return
-
-  debounceTimeout = setTimeout(() => {
-    fn(...args)
-    debounceTimeout = undefined
-  }, debounceTimeoutMS)
-}
-
 
 
 const allLevels: LevelManifest[] = Object.values(levelManifest).flat(1) as LevelManifest[]
@@ -362,10 +253,19 @@ window.addEventListener('load', async () => {
   renderEmpty({ level, gameBoard })
   renderArrows({ level, gameBoard })
   const arrowsToSkip = new Set<number>()
+  const debounced = getDebounced()
+  addEventListener('resize', () => {
+    debounced(10, () => {
+      fixCanvasDims(gameBoard)
+      renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip })
+      renderArrows({ level, gameBoard, arrowsToSkip })
+      gridInfo = getGridInfo(level, gameBoard)
+    })
+  })
   for (const arrowIdx of level.solution) {
     const arrow = level.arrows[arrowIdx]
     const ctx = gameBoard.getContext("2d")
-    const gen = animateArrowLeaving({ arrow, ctx, gridInfo, percentPerSecond: 0.2 })
+    const gen = animateArrowLeaving({ arrow, ctx, gridInfo, percentPerSecond: 0.4 })
     const origPos: PointPair = [arrow[0][1], arrow[0][0]]
     // console.log({ arrowIdx })
     // if (arrowIdx === 20) {
@@ -375,8 +275,19 @@ window.addEventListener('load', async () => {
         if (tsStart === undefined) { tsStart = ts }
         const pos = gen.next(ts - tsStart).value || origPos
         // console.log({ pos })
+        ctx.fillStyle = "black"
+        ctx.fillRect(0, 0, gameBoard.width, gridInfo.yOffset - (gridInfo.gridSizePx / 2))
+        ctx.fillRect(0, 0, Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)), gameBoard.height)
+        ctx.fillRect(0, Math.floor(gridInfo.gridSizePx * (level.rows + 0.5) + gridInfo.yOffset), gameBoard.width, gridInfo.yOffset - Math.floor(gridInfo.gridSizePx / 2))
+        ctx.fillRect(Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)) + (gridInfo.gridSizePx * (level.cols + 1)), 0, gameBoard.width, gameBoard.height)
+        // ctx.fillRect(
+        //   Math.floor(xOffset - (gridSizePx / 2)),
+        //   Math.floor(yOffset - (gridSizePx / 2)),
+        //   gridSizePx * (level.cols + 1),
+        //   gridSizePx * (level.rows + 1),
+        // )
 
-        if (pos[0] >= level.cols || pos[1] >= level.rows || pos[0] < 0 || pos[1] < 0) {
+        if (pos[0] > level.cols || pos[1] > level.rows || pos[0] < -1 || pos[1] < -1) {
           res()
           return
         }
@@ -398,12 +309,4 @@ window.addEventListener('load', async () => {
     // }
   }
 
-  addEventListener('resize', () => {
-    debounced(10, () => {
-      fixCanvasDims(gameBoard)
-      renderEmpty({ level, gameBoard })
-      renderArrows({ level, gameBoard })
-      gridInfo = getGridInfo(level, gameBoard)
-    })
-  })
 })
