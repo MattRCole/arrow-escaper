@@ -1,5 +1,7 @@
 import type { Level } from './types.ts'
 
+export const clamp = (min: number, target: number, max: number) => Math.min(min, Math.min(target, max))
+
 export function* enumerate<T>(iterable: Iterable<T>): Iterable<[number, T]> {
   let idx = 0
   for (const item of iterable) {
