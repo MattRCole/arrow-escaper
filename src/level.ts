@@ -2,6 +2,7 @@ import type { Level, PointPair } from './types.d.ts'
 import { enumerate, range, type GridInfo } from './util.ts'
 import { getDirection, getGridToWorldFn, travel, Direction, type DirectionT, add } from './geometry.ts'
 import { GridDefaults } from './constants.ts'
+import { renderArrow } from './arrow.ts'
 
 const arrowsToBoolmap = (level: Level, arrowsToExclude: Set<number>) => {
   const map = [...range(level.cols)].map(() => (new Array(level.rows)).fill(false) as boolean[])
@@ -162,14 +163,60 @@ const ArcInfo = {
   }
 } as any as { [P in DirectionT]: { [P in DirectionT]: (percent: number) => [[PointPair, PointPair], [PointPair, PointPair], [number, number, boolean]] } }
 
-export function* animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRenderingContext2D, gridInfo: GridInfo, percentPerSecond: number }) {
+export function* animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRenderingContext2D, gridInfo: GridInfo, percentPerSecond: number, bounds: PointPair }) {
+  const {
+    arrow: backwardsArrow, ctx, gridInfo, percentPerSecond, bounds
+  } = args
+
+  const arrow: PointPair[] = backwardsArrow.map(([y, x]) => [x, y])
+  const getGridToWorld = getGridToWorldFn(gridInfo)
+  // We can always assume the last direction is the final direction, arrow heads are always co-linear with the prev  column
+  const directions = arrow.map((pt, idx) => (idx === arrow.length - 1 ? getDirection(arrow[idx - 1], pt) : getDirection(pt, arrow[idx + 1])))
+  const arrowHead = arrow.at(-1)
+  let totalTime: number = 0.0
+  let prevGridPos = arrow[0]
+  const finalDirection = directions.at(-1)
+  while (true) {
+    const deltaT: number = yield prevGridPos
+    // console.log({ deltaT, prevGridPos })
+    if (deltaT === undefined || deltaT === null) {
+      // either somehow we haven't traveled at all
+      continue
+    }
+    totalTime = totalTime + deltaT
+    const fullOffset = (totalTime / 1000) * percentPerSecond
+    const idx = Math.floor(fullOffset)
+    const pos = idx >= arrow.length ? travel(arrowHead, finalDirection, idx - arrow.length + 1) : arrow[idx]
+    const subGridOffset = fullOffset - idx
+
+    for (const toClear of range(Math.ceil(fullOffset))) {
+      if (toClear > idx && subGridOffset < 0.6) continue
+
+      const clearPoint = toClear >= arrow.length ? travel(arrowHead, finalDirection, toClear - arrow.length + 1) : arrow[toClear]
+      if (clearPoint[0] < 0 || clearPoint[0] >= bounds[0] || clearPoint[1] < 0 || clearPoint[1] >= bounds[1]) break;
+      ctx.fillStyle = GridDefaults.bgStyle
+      ctx.fillRect(
+        ...getGridToWorld(...clearPoint),
+        gridInfo.gridSizePx,
+        gridInfo.gridSizePx
+      )
+      ctx.fillStyle = GridDefaults.gridDotStyle
+      ctx.beginPath()
+      ctx.arc(...getGridToWorld(clearPoint[0] + 0.5, clearPoint[1] + 0.5), Math.floor(gridInfo.gridSizePx * GridDefaults.gridDotPercent), 0, Math.PI * 2)
+      ctx.fill()
+    }
+    renderArrow({ arrow: backwardsArrow, ctx, gridInfo, start: fullOffset + 0.4, stop: fullOffset + arrow.length - 1 })
+    prevGridPos = pos
+  }
+}
+export function* _animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRenderingContext2D, gridInfo: GridInfo, percentPerSecond: number }) {
   const { arrow: backwardsArrow, ctx, gridInfo, percentPerSecond } = args
   const arrow: PointPair[] = backwardsArrow.map(([y, x]) => [x, y])
   const getGridToWorld = getGridToWorldFn(gridInfo)
   // We can always assume the last direction is the final direction, arrow heads are always co-linear with the prev  column
   const directions = arrow.map((pt, idx) => (idx === arrow.length - 1 ? getDirection(arrow[idx - 1], pt) : getDirection(pt, arrow[idx + 1])))
   const arrowHead = arrow.at(-1)
-  console.log({ arrow, directions })
+  // console.log({ arrow, directions })
   const finalDirection = directions.at(-1)
   let totalTime: number = 0.0
   let idxPrev: number = 0

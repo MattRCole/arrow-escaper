@@ -26,6 +26,7 @@ import {
   getGridToWorldFn,
   add,
 } from './geometry'
+import { renderArrow } from './arrow.ts'
 
 
 
@@ -34,7 +35,7 @@ const initGameBoard = () => {
   const gameBoard = document.getElementById('game-board')! as HTMLCanvasElement
 
   fixCanvasDims(gameBoard)
-  const ctx = gameBoard.getContext("2d")
+  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
 
   if (!ctx) {
     throw new Error("NO CAN DO CAPTAIN!")
@@ -106,7 +107,7 @@ const renderEmpty = (args: { level: Level, gameBoard: HTMLCanvasElement, arrowsT
 
   const gridInfo = getGridInfo(level, gameBoard)
   const gridToWorld = getGridToWorldFn(gridInfo)
-  const ctx = gameBoard.getContext("2d")
+  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
 
   const {
     xOffset, yOffset, gridSizePx
@@ -159,10 +160,10 @@ const renderArrows = (args: { level: Level, gameBoard: HTMLCanvasElement, arrows
   const gridInfo = getGridInfo(level, gameBoard)
   const { gridSizePx, xOffset, yOffset } = gridInfo
 
-  const ctx = gameBoard.getContext("2d")
+  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
   ctx.translate(0.5, 0.5)
 
-  console.log(gridInfo)
+  // console.log(gridInfo)
 
   ctx.imageSmoothingEnabled = false
   for (const [idx, arrow] of enumerate(level.arrows)) {
@@ -254,38 +255,73 @@ window.addEventListener('load', async () => {
   renderArrows({ level, gameBoard })
   const arrowsToSkip = new Set<number>()
   const debounced = getDebounced()
+  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
+  let bgImage = ctx.getImageData(0, 0, gameBoard.width, gameBoard.height)
+  let pendingIdx = -1
   addEventListener('resize', () => {
     debounced(10, () => {
       fixCanvasDims(gameBoard)
-      renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip })
+      renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip.difference(new Set([pendingIdx])) })
       renderArrows({ level, gameBoard, arrowsToSkip })
       gridInfo = getGridInfo(level, gameBoard)
+      bgImage = ctx.getImageData(0, 0, gameBoard.width, gameBoard.height)
     })
   })
   for (const arrowIdx of level.solution) {
+    // for (const [count, arrowIdx] of enumerate(level.solution)) {
+    pendingIdx = arrowIdx
     const arrow = level.arrows[arrowIdx]
-    const ctx = gameBoard.getContext("2d")
-    const gen = animateArrowLeaving({ arrow, ctx, gridInfo, percentPerSecond: 0.4 })
+    // if (count < 32) {
+    //   arrowsToSkip.add(arrowIdx)
+    //   continue
+    // }
+    const gen = animateArrowLeaving({ arrow, ctx, gridInfo, percentPerSecond: 0.1, bounds: [level.cols, level.rows] })
     const origPos: PointPair = [arrow[0][1], arrow[0][0]]
+    ctx.reset()
+    renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip })
+    arrowsToSkip.add(arrowIdx)
+    renderArrows({ level, gameBoard, arrowsToSkip })
+    bgImage = ctx.getImageData(0, 0, gameBoard.width, gameBoard.height)
+    renderArrow({ arrow, ctx, gridInfo, start: 0.4, stop: arrow.length - 1 })
+
     // console.log({ arrowIdx })
     // if (arrowIdx === 20) {
     await new Promise<void>(res => {
       let tsStart: number | undefined = undefined
+      let tsPrev: number | undefined
+      let force = false
+      // let savedBgImage = false
       const cb = (ts) => {
-        if (tsStart === undefined) { tsStart = ts }
-        const pos = gen.next(ts - tsStart).value || origPos
+        if (tsStart === undefined) {
+          tsStart = ts
+          tsPrev = tsStart
+          force = true
+        }
+        if (ts - tsPrev < (1000 / 30) && !force) {
+          const remTime = ts - tsPrev
+          setTimeout(requestAnimationFrame, remTime, cb)
+          // requestAnimationFrame(cb)
+          return
+        }
+        tsPrev = ts
+        ctx.reset()
+        ctx.putImageData(bgImage, 0, 0)
         // console.log({ pos })
-        ctx.fillStyle = "black"
-        ctx.fillRect(0, 0, gameBoard.width, gridInfo.yOffset - (gridInfo.gridSizePx / 2))
-        ctx.fillRect(0, 0, Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)), gameBoard.height)
-        ctx.fillRect(0, Math.floor(gridInfo.gridSizePx * (level.rows + 0.5) + gridInfo.yOffset), gameBoard.width, gridInfo.yOffset - Math.floor(gridInfo.gridSizePx / 2))
-        ctx.fillRect(Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)) + (gridInfo.gridSizePx * (level.cols + 1)), 0, gameBoard.width, gameBoard.height)
+
+        // ctx.fillStyle = "black"
+        // ctx.fillRect(0, 0, gameBoard.width, gridInfo.yOffset - (gridInfo.gridSizePx / 2))
+        // ctx.fillRect(0, 0, Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)), gameBoard.height)
+        // ctx.fillRect(0, Math.floor(gridInfo.gridSizePx * (level.rows + 0.5) + gridInfo.yOffset), gameBoard.width, gridInfo.yOffset - Math.floor(gridInfo.gridSizePx / 2))
+        // ctx.fillRect(Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)) + (gridInfo.gridSizePx * (level.cols + 1)), 0, gameBoard.width, gameBoard.height)
+        // ctx.fillStyle = GridDefaults.bgStyle
         // ctx.fillRect(
-        //   Math.floor(xOffset - (gridSizePx / 2)),
-        //   Math.floor(yOffset - (gridSizePx / 2)),
-        //   gridSizePx * (level.cols + 1),
-        //   gridSizePx * (level.rows + 1),
+        //   Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)),
+        //   Math.floor(gridInfo.yOffset - (gridInfo.gridSizePx / 2)),
+        //   gridInfo.gridSizePx * (level.cols + 1),
+        //   gridInfo.gridSizePx * (level.rows + 1),
         // )
+        const pos = gen.next(ts - tsStart).value || origPos
+        // const pos = gen.next(1000).value || origPos
 
         if (pos[0] > level.cols || pos[1] > level.rows || pos[0] < -1 || pos[1] < -1) {
           res()
