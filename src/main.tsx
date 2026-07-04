@@ -12,217 +12,22 @@
 //
 //
 import './index.css'
-import { animateArrowLeaving, getEmptySpaces, drawArrowHeadPointingInDirection, drawStraitghtLine } from './level'
 import levelManifest from './level-manifest.json'
-import { type Level, type LevelManifest, type PointPair, type GridInfo, RenderWorkerCommand, type RenderCanvasUpdateCommand, type RenderInitCommand, type RenderRemoveArrowCommand, type RenderResponseMessage, RenderWorkerUpdate } from './types'
-import { getGridInfo, enumerate, getDebounced } from './util'
-import { fixCanvasDims } from './game'
-import { GridDefaults } from './constants.ts'
-import {
-  type DirectionT,
-  getDirection,
-  Direction,
-  OppDirection,
-  getGridToWorldFn,
-  add,
-} from './geometry'
-import { renderArrow } from './arrow.ts'
+import { type Level, type LevelManifest, RenderWorkerCommand, type RenderCanvasUpdateCommand, type RenderInitCommand, type RenderRemoveArrowCommand, type RenderResponseMessage, RenderWorkerUpdate } from './types'
+import { getGridInfo } from './util'
 import Worker from './render.worker.ts?worker'
+import { FakeRenderWorker } from './fake-worker.ts'
 
 
 
 const initGameBoard = () => {
   const gameBoard = document.getElementById('game-board')! as HTMLCanvasElement
 
-  fixCanvasDims(gameBoard)
+  const { width, height } = gameBoard.getBoundingClientRect()
+  gameBoard.width = width
+  gameBoard.height = height
   return gameBoard
 }
-
-
-
-
-
-// Note: I'm not making this type make any sense, north|north is valid, so is north|south, fuck off intrusive thoughts.
-type DirectionPair = `${DirectionT}|${DirectionT}`
-
-const ArcOffsets: { [P in DirectionPair]: [PointPair, PointPair, PointPair, PointPair] } = ({
-  'north|east': [[0.5, 0], [0.5, 0.25], [0.75, 0.5], [1.0, 0.5]],
-  'east|north': [[0.5, 0], [0.5, 0.25], [0.75, 0.5], [1.0, 0.5]],
-  'east|south': [[0.5, 1.0], [0.5, 0.75], [0.75, 0.5], [1.0, 0.5]],
-  'south|east': [[0.5, 1.0], [0.5, 0.75], [0.75, 0.5], [1.0, 0.5]],
-  'south|west': [[0.5, 1.0], [0.5, 0.75], [0.25, 0.5], [0.0, 0.5]],
-  'west|south': [[0.5, 1.0], [0.5, 0.75], [0.25, 0.5], [0.0, 0.5]],
-  'west|north': [[0.5, 0.0], [0.5, 0.25], [0.25, 0.5], [0.0, 0.5]],
-  'north|west': [[0.5, 0.0], [0.5, 0.25], [0.25, 0.5], [0.0, 0.5]],
-} as unknown as typeof ArcOffsets)
-
-const drawArcInDirection = (args: {
-  ctx: CanvasRenderingContext2D,
-  gridInfo: GridInfo,
-  borders: DirectionPair,
-  cell: PointPair
-}) => {
-  const {
-    ctx,
-    gridInfo,
-    borders,
-    cell,
-  } = args
-  const gridToWorld = getGridToWorldFn(gridInfo)
-  const [o1, o2, o3, o4] = ArcOffsets[borders]
-  const [
-    wLineStart,
-    _,
-    wMidPoint,
-    __,
-    wLineEnd,
-    radius,
-  ] = [
-      gridToWorld(...add(cell, o1)),
-      gridToWorld(...add(cell, o2)),
-      gridToWorld(...add(cell, [0.5, 0.5])),
-      gridToWorld(...add(cell, o3)),
-      gridToWorld(...add(cell, o4)),
-      gridInfo.gridSizePx / 4.0
-    ]
-  ctx.moveTo(...wLineStart)
-  // ctx.lineTo(...wArcStart)
-  // ctx.moveTo(...wArcStart)
-  ctx.arcTo(...wMidPoint, ...wLineEnd, radius)
-  ctx.lineTo(...wLineEnd)
-}
-
-const renderEmpty = (args: { level: Level, gameBoard: HTMLCanvasElement, arrowsToExclude?: Set<number> }) => {
-  const {
-    level,
-    gameBoard,
-    arrowsToExclude,
-  } = args
-  const emptySpaces: PointPair[] = getEmptySpaces(level, arrowsToExclude)
-
-  const gridInfo = getGridInfo(level, gameBoard)
-  const gridToWorld = getGridToWorldFn(gridInfo)
-  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
-
-  const {
-    xOffset, yOffset, gridSizePx
-  } = gridInfo
-  ctx.fillStyle = GridDefaults.bgStyle
-  ctx.fillRect(
-    Math.floor(xOffset - (gridSizePx / 2)),
-    Math.floor(yOffset - (gridSizePx / 2)),
-    gridSizePx * (level.cols + 1),
-    gridSizePx * (level.rows + 1),
-  )
-
-  const radius = Math.max(1.0, (Math.floor(GridDefaults.gridDotPercent * gridInfo.gridSizePx)))
-  ctx.fillStyle = GridDefaults.gridDotStyle
-
-  // draw the background board
-  for (const [gridX, gridY] of emptySpaces) {
-    ctx.beginPath()
-    ctx.arc(...gridToWorld(gridX + 0.5, gridY + 0.5), radius, 0, Math.PI * 2)
-    ctx.fill()
-  }
-
-  // if (level.bounds) {
-  //   for (const [gridY, row] of enumerate(level.bounds)) {
-  //     for (const [gridX, isInBounds] of enumerate(row)) {
-  //       if (!isInBounds) continue
-  //
-  //       ctx.beginPath()
-  //       ctx.arc(...gridToWorld(gridX + 0.5, gridY + 0.5), radius, 0, Math.PI * 2)
-  //       ctx.fill()
-  //     }
-  //   }
-  // } else {
-  //   for (const gridX of range(level.cols)) {
-  //     for (const gridY of range(level.rows)) {
-  //       ctx.beginPath()
-  //       ctx.arc(...gridToWorld(gridX + 0.5, gridY + 0.5), radius, 0, Math.PI * 2)
-  //       ctx.fill()
-  //     }
-  //   }
-  // }
-}
-const renderArrows = (args: { level: Level, gameBoard: HTMLCanvasElement, arrowsToSkip?: Set<number> }) => {
-  const {
-    level,
-    gameBoard,
-    arrowsToSkip = new Set<number>()
-  } = args
-  const gridInfo = getGridInfo(level, gameBoard)
-  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
-
-  for (const [idx, arrow] of enumerate(level.arrows)) {
-    if (arrowsToSkip.has(idx)) continue
-
-    renderArrow({ arrow, ctx, gridInfo, start: 0.4, stop: arrow.length - 1 })
-    ctx.resetTransform()
-  }
-}
-const _renderArrows = (args: { level: Level, gameBoard: HTMLCanvasElement, arrowsToSkip?: Set<number> }) => {
-  const {
-    level,
-    gameBoard,
-    arrowsToSkip = new Set<number>(),
-  } = args
-  const gridInfo = getGridInfo(level, gameBoard)
-  const { gridSizePx, xOffset, yOffset } = gridInfo
-
-  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
-  // ctx.translate(0.5, 0.5)
-
-  // console.log(gridInfo)
-
-  ctx.imageSmoothingEnabled = false
-  for (const [idx, arrow] of enumerate(level.arrows)) {
-
-    if (arrowsToSkip.has(idx)) continue
-
-    let lastDirection: DirectionT = Direction.North
-    ctx.fillStyle = 'black'
-    ctx.strokeStyle = 'black'
-    let prevPoint: PointPair = [arrow[0][1], arrow[0][0]]
-    let lineFirstPoint: PointPair = prevPoint
-    let lineStartIdx = 0
-    for (let i = 0; i < arrow.length; i++) {
-      // NOTE: Arrow coords are always stored backwards....
-      const [y, x] = arrow[i]
-      const pt: PointPair = [x, y]
-      if (i + 1 === arrow.length) {
-        drawStraitghtLine({ ctx, gridInfo, startingPoint: lineFirstPoint, endingPoint: pt, direction: lastDirection, endIsHead: true, startIsTail: lineStartIdx === 0 })
-        ctx.stroke()
-        drawArrowHeadPointingInDirection({ ctx, gridInfo, direction: lastDirection!, x, y })
-        ctx.stroke()
-        continue
-      }
-      const [nextY, nextX] = arrow[i + 1]
-      const nextPt: PointPair = [nextX, nextY]
-      const nextDirection = getDirection(pt, nextPt)
-      if (i === 0) {
-        ctx.lineWidth = Math.floor(gridSizePx / 7.0)
-        ctx.beginPath()
-      } else if (lastDirection !== nextDirection) {
-        if (lineStartIdx != -1) {
-          // If we had at least one straight segment
-          drawStraitghtLine({ ctx, gridInfo, startingPoint: lineFirstPoint, endingPoint: prevPoint, direction: lastDirection, startIsTail: lineStartIdx === 0 })
-        }
-        drawArcInDirection({ ctx, gridInfo, borders: `${OppDirection[lastDirection]}|${nextDirection}`, cell: pt })
-        lineStartIdx = -1
-      } else if (lineStartIdx === -1) {
-        // If we did a curve last point and this point we're going straight
-        // set ourselves as the first point in the line
-        lineFirstPoint = pt
-        lineStartIdx = i
-      }
-      lastDirection = nextDirection
-      prevPoint = pt
-    }
-  }
-}
-
-
 
 const allLevels: LevelManifest[] = Object.values(levelManifest).flat(1) as LevelManifest[]
 
@@ -236,168 +41,43 @@ const getLevel = (): Promise<Level> => {
 
 let level: Level | undefined = undefined
 
-// const setupLevelCo
-
 window.addEventListener('load', async () => {
   const gameBoard = initGameBoard()
   console.log(allLevels)
   level = await getLevel()
-  // setInterval(async () => {
-  //   lvlIdx = (lvlIdx + 1) % allLevels.length
-  //   level = await getLevel()
-  //
-  //   // fixCanvasDims(gameBoard)
-  //   const ctx = gameBoard.getContext("2d")
-  //
-  //   ctx.reset()
-  //   ctx.fillStyle = "black"
-  //   ctx.fillRect(0, 0, gameBoard.width, gameBoard.height)
-  //   const skipArrows = new Set([lvlIdx % level.arrows.length])
-  //   renderEmpty({ level, gameBoard, arrowsToExclude: skipArrows })
-  //   renderArrows({ level, gameBoard, arrowsToSkip: skipArrows })
-  //
-  // }, 3000)
-  //
 
-  if (!window.Worker) {
-    console.log("No can do boss, no workers allowed, this one's all on me")
-    oldRender(gameBoard, level)
-  } else {
-    const prepCanvas = document.createElement('canvas')
-    prepCanvas.width = gameBoard.width
-    prepCanvas.height = gameBoard.height
-    const worker = new Worker()
-    const offscreenPrep = prepCanvas.transferControlToOffscreen()
-    const offscreenGameBoard = gameBoard.transferControlToOffscreen()
-    worker.postMessage({
-      type: RenderWorkerCommand.Init,
-      payload: {
-        prepBoard: offscreenPrep,
-        gameBoard: offscreenGameBoard,
-        arrowPercentPerSecond: 10,
-        gridInfo: getGridInfo(level, gameBoard),
-        targetFPS: 60,
-        level,
-      }
-    } as RenderInitCommand, [offscreenPrep, offscreenGameBoard])
-    addEventListener('resize', () => {
-      const rect = gameBoard.getBoundingClientRect()
-      // prepCanvas.width = gameBoard.width
-      // prepCanvas.height = gameBoard.height
-      worker.postMessage({ type: RenderWorkerCommand.CanvasUpdate, payload: { gridInfo: getGridInfo(level, rect), width: rect.width, height: rect.height } } as RenderCanvasUpdateCommand)
-    })
-    let solutionIdx = 1
-    worker.postMessage({ type: RenderWorkerCommand.RemoveArrow, payload: level.solution[0] } as RenderRemoveArrowCommand)
-    worker.onmessage = (ev: MessageEvent<RenderResponseMessage>) => {
-      if (!ev.data.type || ev.data.type !== RenderWorkerUpdate.ArrowRemoved) {
-        console.warn('WTF am I supposed to do with this shit???', ev.data)
-        return
-      }
-      if (solutionIdx < level.solution.length) {
-        worker.postMessage({ type: RenderWorkerCommand.RemoveArrow, payload: level.solution[solutionIdx] })
-        solutionIdx = solutionIdx + 1
-      }
+  const worker = window.Worker ? new Worker() : new FakeRenderWorker()
+  const prepCanvas = document.createElement('canvas')
+  prepCanvas.width = gameBoard.width
+  prepCanvas.height = gameBoard.height
+  const offscreenPrep = prepCanvas.transferControlToOffscreen()
+  const offscreenGameBoard = gameBoard.transferControlToOffscreen()
+  worker.postMessage({
+    type: RenderWorkerCommand.Init,
+    payload: {
+      prepBoard: offscreenPrep,
+      gameBoard: offscreenGameBoard,
+      arrowPercentPerSecond: 10,
+      gridInfo: getGridInfo(level, gameBoard),
+      targetFPS: 60,
+      level,
+    }
+  } as RenderInitCommand, [offscreenPrep, offscreenGameBoard])
+  addEventListener('resize', () => {
+    const rect = gameBoard.getBoundingClientRect()
+    worker.postMessage({ type: RenderWorkerCommand.CanvasUpdate, payload: { gridInfo: getGridInfo(level, rect), width: rect.width, height: rect.height } } as RenderCanvasUpdateCommand)
+  })
+  let solutionIdx = 1
+  worker.postMessage({ type: RenderWorkerCommand.RemoveArrow, payload: level.solution[0] } as RenderRemoveArrowCommand)
+  worker.onmessage = (ev: MessageEvent<RenderResponseMessage>) => {
+    if (!ev.data.type || ev.data.type !== RenderWorkerUpdate.ArrowRemoved) {
+      console.warn('WTF am I supposed to do with this shit???', ev.data)
+      return
+    }
+    if (solutionIdx < level.solution.length) {
+      worker.postMessage({ type: RenderWorkerCommand.RemoveArrow, payload: level.solution[solutionIdx] })
+      solutionIdx = solutionIdx + 1
     }
   }
 })
 
-const oldRender = async (gameBoard: HTMLCanvasElement, level: Level) => {
-  let gridInfo = getGridInfo(level, gameBoard)
-  const skipArrows = new Set([lvlIdx % level.arrows.length])
-  renderEmpty({ level, gameBoard })
-  renderArrows({ level, gameBoard })
-  const arrowsToSkip = new Set<number>()
-  const debounced = getDebounced()
-  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
-  let bgImage = ctx.getImageData(0, 0, gameBoard.width, gameBoard.height)
-  let pendingIdx = -1
-  addEventListener('resize', () => {
-    debounced(10, () => {
-      fixCanvasDims(gameBoard)
-      renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip.difference(new Set([pendingIdx])) })
-      renderArrows({ level, gameBoard, arrowsToSkip })
-      gridInfo = getGridInfo(level, gameBoard)
-      bgImage = ctx.getImageData(0, 0, gameBoard.width, gameBoard.height)
-    })
-  })
-  for (const arrowIdx of level.solution) {
-    // for (const [count, arrowIdx] of enumerate(level.solution)) {
-    pendingIdx = arrowIdx
-    const arrow = level.arrows[arrowIdx]
-    // if (count < 32) {
-    //   arrowsToSkip.add(arrowIdx)
-    //   continue
-    // }
-    const gen = animateArrowLeaving({ arrow, ctx, gridInfo, percentPerSecond: 0.1, bounds: [level.cols, level.rows] })
-    const origPos: PointPair = [arrow[0][1], arrow[0][0]]
-    ctx.reset()
-    renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip })
-    ctx.resetTransform()
-    arrowsToSkip.add(arrowIdx)
-    renderArrows({ level, gameBoard, arrowsToSkip })
-
-    bgImage = ctx.getImageData(0, 0, gameBoard.width, gameBoard.height)
-
-    renderArrow({ arrow, ctx, gridInfo, start: 0.4, stop: arrow.length - 1 })
-
-    // console.log({ arrowIdx })
-    // if (arrowIdx === 20) {
-    await new Promise<void>(res => {
-      let tsStart: number | undefined = undefined
-      let tsPrev: number | undefined
-      let force = false
-      // let savedBgImage = false
-      const cb = (ts) => {
-        if (tsStart === undefined) {
-          tsStart = ts
-          tsPrev = tsStart
-          force = true
-        }
-        if (ts - tsPrev < (1000 / 30) && !force) {
-          const remTime = ts - tsPrev
-          setTimeout(requestAnimationFrame, remTime, cb)
-          // requestAnimationFrame(cb)
-          return
-        }
-        tsPrev = ts
-        ctx.reset()
-        ctx.putImageData(bgImage, 0, 0)
-        // console.log({ pos })
-
-        // ctx.fillStyle = "black"
-        // ctx.fillRect(0, 0, gameBoard.width, gridInfo.yOffset - (gridInfo.gridSizePx / 2))
-        // ctx.fillRect(0, 0, Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)), gameBoard.height)
-        // ctx.fillRect(0, Math.floor(gridInfo.gridSizePx * (level.rows + 0.5) + gridInfo.yOffset), gameBoard.width, gridInfo.yOffset - Math.floor(gridInfo.gridSizePx / 2))
-        // ctx.fillRect(Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)) + (gridInfo.gridSizePx * (level.cols + 1)), 0, gameBoard.width, gameBoard.height)
-        // ctx.fillStyle = GridDefaults.bgStyle
-        // ctx.fillRect(
-        //   Math.floor(gridInfo.xOffset - (gridInfo.gridSizePx / 2)),
-        //   Math.floor(gridInfo.yOffset - (gridInfo.gridSizePx / 2)),
-        //   gridInfo.gridSizePx * (level.cols + 1),
-        //   gridInfo.gridSizePx * (level.rows + 1),
-        // )
-        const pos = gen.next(ts - tsStart).value || origPos
-        // const pos = gen.next(1000).value || origPos
-
-        if (pos[0] > level.cols || pos[1] > level.rows || pos[0] < -1 || pos[1] < -1) {
-          res()
-          return
-        }
-
-        requestAnimationFrame(cb)
-      }
-      requestAnimationFrame(cb)
-    })
-    // }
-    arrowsToSkip.add(arrowIdx)
-
-
-    // ctx.reset()
-    // renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip })
-    // renderArrows({ level, gameBoard, arrowsToSkip })
-    // while (pos[0] < level.cols && pos[1] < level.rows && it < maxIt) {
-    //
-    //   it = it + 1
-    // }
-  }
-}

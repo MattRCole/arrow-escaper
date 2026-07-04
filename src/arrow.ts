@@ -1,5 +1,5 @@
 import { GridDefaults } from './constants'
-import { type DirectionT, add, Direction, getDirection, getGridToWorldFn, OppDirection, travel, } from './geometry'
+import { type DirectionT, add, Direction, getDirection, getGridToWorldFn, travel, } from './geometry'
 import type { Level, PointPair, GridInfo } from './types'
 import { enumerate, range } from './util'
 // import logger from './logging'
@@ -241,7 +241,7 @@ export const drawStraitghtLine = (args: {
 *    will be used as sort of a "percentage" to render the `start` and `stop` (respectively) indexes of the arrow.
 *
 */
-export const renderArrow = (args: { arrow: PointPair[], ctx: CanvasRenderingContext2D, gridInfo: GridInfo, start: number, stop: number }) => {
+export const renderArrow = (args: { arrow: PointPair[], ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, gridInfo: GridInfo, start: number, stop: number }) => {
   const {
     arrow,
     ctx,
