@@ -14,7 +14,8 @@ export const RenderWorkerCommand = {
   RemoveArrow: 'remove-arrow',
   Pause: 'pause',
   Resume: 'resume',
-  CanvasUpdate: 'canvas-update'
+  CanvasUpdate: 'canvas-update',
+  DebugTap: 'debug-tap',
 } as const
 
 type RenderWorkerCommandE = typeof RenderWorkerCommand
@@ -42,6 +43,11 @@ export type RenderRemoveArrowCommand = {
   payload: number,
 }
 
+export type RenderDebugTap = {
+  type: RenderWorkerCommandE['DebugTap'],
+  payload: PointPair,
+}
+
 type SimpleCommand<T extends RenderWorkerCommandT> = { type: T }
 export type RenderPauseCommand = SimpleCommand<RenderWorkerCommandE['Pause']>
 export type RenderResumeCommand = SimpleCommand<RenderWorkerCommandE['Resume']>
@@ -51,7 +57,7 @@ export type RenderCanvasUpdateCommand = {
 }
 
 export type RenderWorkerCommandT = typeof RenderWorkerCommand[keyof typeof RenderWorkerCommand]
-export type RenderMessage = RenderInitCommand | RenderRemoveArrowCommand | RenderPauseCommand | RenderResumeCommand | RenderCanvasUpdateCommand
+export type RenderMessage = RenderInitCommand | RenderRemoveArrowCommand | RenderPauseCommand | RenderResumeCommand | RenderCanvasUpdateCommand | RenderDebugTap
 
 
 export const RenderWorkerUpdate = {

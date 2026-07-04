@@ -1,5 +1,5 @@
 import { RenderingEngine } from "./renderer"
-import { RenderWorkerCommand, type RenderMessage } from "./types"
+import { type RenderMessage } from "./types"
 
 /** Don't get it twisted: this renders, but it isn't a worker, it fakes the worker API */
 export class FakeRenderWorker {
@@ -7,22 +7,7 @@ export class FakeRenderWorker {
   public renderer: RenderingEngine
 
   postMessage(...args: [unknown, Transferable] | [unknown] | [unknown, StructuredSerializeOptions]) {
-    const [message] = (args as [RenderMessage])
-    switch (message.type) {
-      case RenderWorkerCommand.Init:
-        this.renderer.init(message.payload)
-        return
-      case RenderWorkerCommand.CanvasUpdate:
-        this.renderer.updateSizing(message.payload)
-        return
-      case RenderWorkerCommand.RemoveArrow:
-        this.renderer.removeArrow(message.payload)
-        return
-      case RenderWorkerCommand.Pause:
-      case RenderWorkerCommand.Resume:
-      default:
-        console.warn("The fake worker can't handle the following message:", message)
-    }
+    this.renderer.handleMessage(args[0] as RenderMessage)
   }
 
   handlePostMessage(...args: Parameters<typeof Worker.prototype.postMessage>) {

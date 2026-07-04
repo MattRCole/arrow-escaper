@@ -39,7 +39,7 @@ export const travel = ([x, y]: PointPair, direction: DirectionT, amount: number)
 } as { [P in DirectionT]: () => PointPair })[direction]())
 
 export const getGridToWorldFn = ({ gridSizePx, yOffset, xOffset }: GridInfo) => (x: number, y: number): [number, number] => [Math.round((x * gridSizePx) + xOffset), Math.round((y * gridSizePx) + yOffset)]
-export const getWorldToGridFn = ({ gridSizePx, yOffset, xOffset }: GridInfo) => (x: number, y: number): [number, number] => [Math.round((x - xOffset) / gridSizePx), Math.round((y - yOffset) / gridSizePx)]
+export const getWorldToGridFn = ({ gridSizePx, yOffset, xOffset }: GridInfo) => (x: number, y: number): [number, number] => [(x - xOffset) / gridSizePx, (y - yOffset) / gridSizePx]
 
 export const add = ([x1, y1]: PointPair, [x2, y2]: PointPair): PointPair => [x1 + x2, y1 + y2]
 

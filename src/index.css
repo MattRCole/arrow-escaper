@@ -1,8 +1,8 @@
 #game-board {
     width: 75vw;
     height: 75vh;
-    padding-block: 12.5vh;
-    padding-inline: 12.5vw;
+    margin-block: 12.5vh;
+    margin-inline: 12.5vw;
 }
 
 #root {

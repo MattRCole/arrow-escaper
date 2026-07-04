@@ -1,6 +1,7 @@
 import { renderArrows } from "./arrow"
+import { getGridToWorldFn } from "./geometry"
 import { animateArrowLeaving, renderEmpty } from "./level"
-import { RenderWorkerUpdate, type GridInfo, type Level, type RenderCanvasUpdateCommand, type RenderInitCommand } from "./types"
+import { RenderWorkerCommand, RenderWorkerUpdate, type GridInfo, type Level, type PointPair, type RenderCanvasUpdateCommand, type RenderInitCommand, type RenderMessage } from "./types"
 
 
 export class RenderingEngine {
@@ -16,6 +17,7 @@ export class RenderingEngine {
   public arrowsLeaving: Set<number>
   public prevFrame: number
   public arrowsLeavingGenMap: { [arrowIdx: number]: ReturnType<typeof animateArrowLeaving> }
+  public debugTaps: { [pos: string]: PointPair }
   public bgImageHash: string
   public _bgImage: ImageData
   public _postMessage: typeof Worker.prototype.postMessage
@@ -34,8 +36,43 @@ export class RenderingEngine {
 
   constructor(postMessage) {
     this._postMessage = postMessage
+    // this.popDebugTap = this.popDebugTap.bind(this)
     this.loop = this.loop.bind(this)
+    this.debugTaps = {}
+    // setInterval(this.popDebugTap, 5000)
   }
+  // private popDebugTap() {
+  //   if (!this.debugTaps.length)
+  //     return
+  //   const [_, ...debugTaps] = this.debugTaps
+  //   this.debugTaps = debugTaps
+  //   this.renderDebugTaps(this.arrowsLeaving.size === 0)
+  // }
+
+  handleMessage(message: RenderMessage) {
+    switch (message.type) {
+      case RenderWorkerCommand.RemoveArrow:
+        this.removeArrow(message.payload)
+        break
+      case RenderWorkerCommand.Init:
+        this.init(message.payload)
+        return
+      case RenderWorkerCommand.CanvasUpdate:
+        this.updateSizing(message.payload)
+        return
+      case RenderWorkerCommand.DebugTap:
+        this.addDebugTap(message.payload)
+        return
+      case RenderWorkerCommand.Pause:
+      case RenderWorkerCommand.Resume:
+      default:
+        // Not supported yet I suppose
+        console.warn(`Render worker cannot yet handle the ${message.type} command yet`)
+        return;
+
+    }
+  }
+
   updateSizing(args: RenderCanvasUpdateCommand['payload']) {
     this.gridInfo.gridSizePx = args.gridInfo.gridSizePx
     this.gridInfo.xOffset = args.gridInfo.xOffset
@@ -64,9 +101,31 @@ export class RenderingEngine {
     })
     return this.prepCtx.getImageData(0, 0, this.prepBoard.width, this.prepBoard.height)
   }
+  renderDebugTaps(clear: boolean = false) {
+    if (clear) this.renderCtx.putImageData(this.bgImage, 0, 0)
+
+    this.renderCtx.fillStyle = 'red'
+    for (const tap of Object.values(this.debugTaps)) {
+      this.renderCtx.resetTransform()
+      this.renderCtx.beginPath()
+      this.renderCtx.arc(...getGridToWorldFn(this.gridInfo)(...tap), this.gridInfo.gridSizePx * 0.15, 0, Math.PI * 2)
+      this.renderCtx.fill()
+    }
+  }
   renderBoard() {
     this.renderCtx.reset()
     this.renderCtx.putImageData(this.bgImage, 0, 0)
+
+  }
+
+  addDebugTap(point: PointPair) {
+    const key = `${point[0]}:${point[1]}`
+    const debugTaps = this.debugTaps
+    debugTaps[key] = point
+    setTimeout(() => {
+      delete debugTaps[key]
+    }, 500)
+    this.renderDebugTaps(this.arrowsLeaving.size === 0)
   }
 
   init(args: RenderInitCommand['payload']) {
@@ -138,6 +197,7 @@ export class RenderingEngine {
         this._postMessage({ type: RenderWorkerUpdate['ArrowRemoved'], payload: arrowIdx })
       }
     }
+    this.renderDebugTaps()
 
     requestAnimationFrame(this.loop)
   }
