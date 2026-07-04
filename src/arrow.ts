@@ -1,8 +1,8 @@
 import { GridDefaults } from './constants'
 import { type DirectionT, add, Direction, getDirection, getGridToWorldFn, OppDirection, travel, } from './geometry'
-import type { PointPair } from './types'
-import { range, type GridInfo } from './util'
-import logger from './logging'
+import type { Level, PointPair, GridInfo } from './types'
+import { enumerate, range } from './util'
+// import logger from './logging'
 
 type NeighborDir<D extends DirectionT> = D extends 'north' | 'south' ? 'east' | 'west'
   : D extends 'east' | 'west' ? 'north' | 'south' : never
@@ -99,7 +99,7 @@ const drawArc = (args: {
   const radius = gridInfo.gridSizePx * 0.25
   const gridToWorld = getGridToWorldFn(gridInfo)
   if (subIndex < 0.25) {
-    // we are only "cutting off" less than 25% of the arc, so we can use static values
+    // we are only "cutting off" less than 25% of the arc, so we can use static fn
     drawStaticArc({ ctx, gridInfo, prevDirection, currentDirection, pt, subIndex })
   } else if (subIndex < 0.75) {
     const arcPercent = (subIndex - 0.25) / 0.5
@@ -293,7 +293,7 @@ export const renderArrow = (args: { arrow: PointPair[], ctx: CanvasRenderingCont
     const subIdx = i === stopIdx ? subStop : i < start ? subStart : 0
     const ptWhole = getSafePointAt(i)
     const pt = add(ptWhole, [subIdx, subIdx])
-    console.log({ i, start, stop, ptWhole: JSON.stringify(ptWhole), pt: JSON.stringify(pt), arrowLen: arrow.length })
+    // console.log({ i, start, stop, ptWhole: JSON.stringify(ptWhole), pt: JSON.stringify(pt), arrowLen: arrow.length })
 
     if (i === stopIdx) {
       drawStraitghtLine({
@@ -341,5 +341,22 @@ export const renderArrow = (args: { arrow: PointPair[], ctx: CanvasRenderingCont
     lastDirection = nextDirection
     prevPoint = pt
     prevPointWhole = ptWhole
+  }
+}
+
+
+export const renderArrows = (args: { level: Level, gridInfo: GridInfo, ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, arrowsToSkip?: Set<number> }) => {
+  const {
+    level,
+    gridInfo,
+    ctx,
+    arrowsToSkip = new Set<number>()
+  } = args
+
+  for (const [idx, arrow] of enumerate(level.arrows)) {
+    if (arrowsToSkip.has(idx)) continue
+
+    renderArrow({ arrow, ctx, gridInfo, start: 0.4, stop: arrow.length - 1 })
+    ctx.resetTransform()
   }
 }

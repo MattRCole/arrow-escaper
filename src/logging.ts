@@ -84,9 +84,10 @@ const commonPrivateIPAddresses = [
 ]
 
 const defaultLogger = new Logger(
-  (['localhost', '127.0.0.1'].includes(document.location.hostname) || commonPrivateIPAddresses.filter(ipStart => document.location.hostname.startsWith(ipStart)).length > 0)
-    ? LogLevel.Debug
-    : LogLevel.Warn
+  // (['localhost', '127.0.0.1'].includes(document.location.hostname) || commonPrivateIPAddresses.filter(ipStart => document.location.hostname.startsWith(ipStart)).length > 0)
+  // ? LogLevel.Debug
+  // : LogLevel.Warn
+  LogLevel.Warn
 )
 
 export default defaultLogger

@@ -14,8 +14,8 @@
 import './index.css'
 import { animateArrowLeaving, getEmptySpaces, drawArrowHeadPointingInDirection, drawStraitghtLine } from './level'
 import levelManifest from './level-manifest.json'
-import type { Level, LevelManifest, PointPair } from './types'
-import { type GridInfo, getGridInfo, enumerate, getDebounced } from './util'
+import { type Level, type LevelManifest, type PointPair, type GridInfo, RenderWorkerCommand, type RenderCanvasUpdateCommand, type RenderInitCommand, type RenderRemoveArrowCommand, type RenderResponseMessage, RenderWorkerUpdate } from './types'
+import { getGridInfo, enumerate, getDebounced } from './util'
 import { fixCanvasDims } from './game'
 import { GridDefaults } from './constants.ts'
 import {
@@ -27,7 +27,7 @@ import {
   add,
 } from './geometry'
 import { renderArrow } from './arrow.ts'
-
+import Worker from './render.worker.ts?worker'
 
 
 
@@ -35,11 +35,6 @@ const initGameBoard = () => {
   const gameBoard = document.getElementById('game-board')! as HTMLCanvasElement
 
   fixCanvasDims(gameBoard)
-  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
-
-  if (!ctx) {
-    throw new Error("NO CAN DO CAPTAIN!")
-  }
   return gameBoard
 }
 
@@ -150,8 +145,23 @@ const renderEmpty = (args: { level: Level, gameBoard: HTMLCanvasElement, arrowsT
   //   }
   // }
 }
-
 const renderArrows = (args: { level: Level, gameBoard: HTMLCanvasElement, arrowsToSkip?: Set<number> }) => {
+  const {
+    level,
+    gameBoard,
+    arrowsToSkip = new Set<number>()
+  } = args
+  const gridInfo = getGridInfo(level, gameBoard)
+  const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
+
+  for (const [idx, arrow] of enumerate(level.arrows)) {
+    if (arrowsToSkip.has(idx)) continue
+
+    renderArrow({ arrow, ctx, gridInfo, start: 0.4, stop: arrow.length - 1 })
+    ctx.resetTransform()
+  }
+}
+const _renderArrows = (args: { level: Level, gameBoard: HTMLCanvasElement, arrowsToSkip?: Set<number> }) => {
   const {
     level,
     gameBoard,
@@ -161,7 +171,7 @@ const renderArrows = (args: { level: Level, gameBoard: HTMLCanvasElement, arrows
   const { gridSizePx, xOffset, yOffset } = gridInfo
 
   const ctx = gameBoard.getContext("2d", { willReadFrequently: true })
-  ctx.translate(0.5, 0.5)
+  // ctx.translate(0.5, 0.5)
 
   // console.log(gridInfo)
 
@@ -249,6 +259,49 @@ window.addEventListener('load', async () => {
   // }, 3000)
   //
 
+  if (!window.Worker) {
+    console.log("No can do boss, no workers allowed, this one's all on me")
+    oldRender(gameBoard, level)
+  } else {
+    const prepCanvas = document.createElement('canvas')
+    prepCanvas.width = gameBoard.width
+    prepCanvas.height = gameBoard.height
+    const worker = new Worker()
+    const offscreenPrep = prepCanvas.transferControlToOffscreen()
+    const offscreenGameBoard = gameBoard.transferControlToOffscreen()
+    worker.postMessage({
+      type: RenderWorkerCommand.Init,
+      payload: {
+        prepBoard: offscreenPrep,
+        gameBoard: offscreenGameBoard,
+        arrowPercentPerSecond: 10,
+        gridInfo: getGridInfo(level, gameBoard),
+        targetFPS: 60,
+        level,
+      }
+    } as RenderInitCommand, [offscreenPrep, offscreenGameBoard])
+    addEventListener('resize', () => {
+      const rect = gameBoard.getBoundingClientRect()
+      // prepCanvas.width = gameBoard.width
+      // prepCanvas.height = gameBoard.height
+      worker.postMessage({ type: RenderWorkerCommand.CanvasUpdate, payload: { gridInfo: getGridInfo(level, rect), width: rect.width, height: rect.height } } as RenderCanvasUpdateCommand)
+    })
+    let solutionIdx = 1
+    worker.postMessage({ type: RenderWorkerCommand.RemoveArrow, payload: level.solution[0] } as RenderRemoveArrowCommand)
+    worker.onmessage = (ev: MessageEvent<RenderResponseMessage>) => {
+      if (!ev.data.type || ev.data.type !== RenderWorkerUpdate.ArrowRemoved) {
+        console.warn('WTF am I supposed to do with this shit???', ev.data)
+        return
+      }
+      if (solutionIdx < level.solution.length) {
+        worker.postMessage({ type: RenderWorkerCommand.RemoveArrow, payload: level.solution[solutionIdx] })
+        solutionIdx = solutionIdx + 1
+      }
+    }
+  }
+})
+
+const oldRender = async (gameBoard: HTMLCanvasElement, level: Level) => {
   let gridInfo = getGridInfo(level, gameBoard)
   const skipArrows = new Set([lvlIdx % level.arrows.length])
   renderEmpty({ level, gameBoard })
@@ -279,9 +332,12 @@ window.addEventListener('load', async () => {
     const origPos: PointPair = [arrow[0][1], arrow[0][0]]
     ctx.reset()
     renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip })
+    ctx.resetTransform()
     arrowsToSkip.add(arrowIdx)
     renderArrows({ level, gameBoard, arrowsToSkip })
+
     bgImage = ctx.getImageData(0, 0, gameBoard.width, gameBoard.height)
+
     renderArrow({ arrow, ctx, gridInfo, start: 0.4, stop: arrow.length - 1 })
 
     // console.log({ arrowIdx })
@@ -336,13 +392,12 @@ window.addEventListener('load', async () => {
     arrowsToSkip.add(arrowIdx)
 
 
-    ctx.reset()
-    renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip })
-    renderArrows({ level, gameBoard, arrowsToSkip })
+    // ctx.reset()
+    // renderEmpty({ level, gameBoard, arrowsToExclude: arrowsToSkip })
+    // renderArrows({ level, gameBoard, arrowsToSkip })
     // while (pos[0] < level.cols && pos[1] < level.rows && it < maxIt) {
     //
     //   it = it + 1
     // }
   }
-
-})
+}

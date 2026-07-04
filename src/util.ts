@@ -1,4 +1,4 @@
-import type { Level } from './types.ts'
+import type { GridInfo, Level } from './types.ts'
 
 export const clamp = (min: number, target: number, max: number) => Math.min(min, Math.min(target, max))
 
@@ -10,7 +10,7 @@ export function* enumerate<T>(iterable: Iterable<T>): Iterable<[number, T]> {
   }
 }
 
-export const getGridInfo = (level: Level, gameBoard: HTMLCanvasElement): { gridSizePx: number, xOffset: number, yOffset: number } => {
+export const getGridInfo = (level: Level, gameBoard: { width: number, height: number }): GridInfo => {
   const gridSizePx = Math.floor(Math.min(gameBoard.height / (level.rows + 1), gameBoard.width / (level.cols + 1)))
   return {
     gridSizePx,
@@ -19,7 +19,6 @@ export const getGridInfo = (level: Level, gameBoard: HTMLCanvasElement): { gridS
   }
 }
 
-export type GridInfo = ReturnType<typeof getGridInfo>
 
 export function* range(args: number | { start?: number, stop: number, step?: number }): Iterable<number> {
   const argsIsNum = typeof args === 'number'

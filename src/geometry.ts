@@ -1,5 +1,4 @@
-import type { PointPair } from './types.ts'
-import { type GridInfo } from './util.ts'
+import type { PointPair, GridInfo } from './types.ts'
 
 export const Direction = {
   North: 'north',

@@ -1,5 +1,5 @@
-import type { Level, PointPair } from './types.d.ts'
-import { enumerate, range, type GridInfo } from './util.ts'
+import type { Level, PointPair, GridInfo } from './types.d.ts'
+import { enumerate, range } from './util.ts'
 import { getDirection, getGridToWorldFn, travel, Direction, type DirectionT, add } from './geometry.ts'
 import { GridDefaults } from './constants.ts'
 import { renderArrow } from './arrow.ts'
@@ -163,9 +163,14 @@ const ArcInfo = {
   }
 } as any as { [P in DirectionT]: { [P in DirectionT]: (percent: number) => [[PointPair, PointPair], [PointPair, PointPair], [number, number, boolean]] } }
 
-export function* animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRenderingContext2D, gridInfo: GridInfo, percentPerSecond: number, bounds: PointPair }) {
+export function* animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, gridInfo: GridInfo, percentPerSecond: number, bounds: PointPair, exponent?: number }) {
   const {
-    arrow: backwardsArrow, ctx, gridInfo, percentPerSecond, bounds
+    arrow: backwardsArrow,
+    ctx,
+    gridInfo,
+    percentPerSecond,
+    bounds,
+    exponent = 1,
   } = args
 
   const arrow: PointPair[] = backwardsArrow.map(([y, x]) => [x, y])
@@ -176,15 +181,15 @@ export function* animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRend
   let totalTime: number = 0.0
   let prevGridPos = arrow[0]
   const finalDirection = directions.at(-1)
+  let deltaT = 0
   while (true) {
-    const deltaT: number = yield prevGridPos
-    // console.log({ deltaT, prevGridPos })
-    if (deltaT === undefined || deltaT === null) {
-      // either somehow we haven't traveled at all
-      continue
-    }
+    // console.og({ deltaT, prevGridPos })
+    // if (deltaT === undefined || deltaT === null) {
+    //   // either somehow we haven't traveled at all
+    //   continue
+    // }
     totalTime = totalTime + deltaT
-    const fullOffset = (totalTime / 1000) * percentPerSecond
+    const fullOffset = Math.pow((totalTime / 1000) * percentPerSecond, exponent)
     const idx = Math.floor(fullOffset)
     const pos = idx >= arrow.length ? travel(arrowHead, finalDirection, idx - arrow.length + 1) : arrow[idx]
     const subGridOffset = fullOffset - idx
@@ -206,7 +211,10 @@ export function* animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRend
       ctx.fill()
     }
     renderArrow({ arrow: backwardsArrow, ctx, gridInfo, start: fullOffset + 0.4, stop: fullOffset + arrow.length - 1 })
+    ctx.stroke()
     prevGridPos = pos
+    const _deltaT = yield prevGridPos
+    deltaT = _deltaT || 0
   }
 }
 export function* _animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRenderingContext2D, gridInfo: GridInfo, percentPerSecond: number }) {
@@ -223,11 +231,12 @@ export function* _animateArrowLeaving(args: { arrow: PointPair[], ctx: CanvasRen
   let subGridOffsetPrev: number = 0
   let prevGridPos = arrow[0]
   while (true) {
-    const deltaT: number = yield prevGridPos
-    if (!deltaT) {
-      // either somehow we haven't traveled at all
-      continue
-    }
+    const _deltaT: number = yield prevGridPos
+    const deltaT = _deltaT || 0
+    // if (!deltaT) {
+    //   // either somehow we haven't traveled at all
+    //   continue
+    // }
     totalTime = totalTime + deltaT
     const fullOffset = (totalTime / 1000) * percentPerSecond
     const idx = Math.floor(fullOffset)
@@ -355,3 +364,35 @@ export const getEmptySpaces = (level: Level, arrowsToExclude?: Set<number>): Poi
   }, [])
 }
 
+
+export const renderEmpty = (args: { level: Level, gridInfo: GridInfo, ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D, arrowsToExclude?: Set<number> }) => {
+  const {
+    level,
+    gridInfo,
+    ctx,
+    arrowsToExclude,
+  } = args
+  const emptySpaces: PointPair[] = getEmptySpaces(level, arrowsToExclude)
+  const gridToWorld = getGridToWorldFn(gridInfo)
+
+  const {
+    xOffset, yOffset, gridSizePx
+  } = gridInfo
+  ctx.fillStyle = GridDefaults.bgStyle
+  ctx.fillRect(
+    Math.floor(xOffset - (gridSizePx / 2)),
+    Math.floor(yOffset - (gridSizePx / 2)),
+    gridSizePx * (level.cols + 1),
+    gridSizePx * (level.rows + 1),
+  )
+
+  const radius = Math.max(1.0, (Math.floor(GridDefaults.gridDotPercent * gridInfo.gridSizePx)))
+  ctx.fillStyle = GridDefaults.gridDotStyle
+
+  // draw the background board
+  for (const [gridX, gridY] of emptySpaces) {
+    ctx.beginPath()
+    ctx.arc(...gridToWorld(gridX + 0.5, gridY + 0.5), radius, 0, Math.PI * 2)
+    ctx.fill()
+  }
+}

@@ -1,6 +1,6 @@
 import { add } from "./geometry";
-import type { Level, PointPair } from "./types";
-import { getDebounced, getGridInfo, type GridInfo } from "./util";
+import type { Level, PointPair, GridInfo } from "./types";
+import { getDebounced, getGridInfo } from "./util";
 
 export const fixCanvasDims = (canvas: HTMLCanvasElement) => {
   const { width, height } = canvas.getBoundingClientRect()
